@@ -1,0 +1,24 @@
+# 测试环境配置
+test:
+  server:
+    port: 8081
+    host: localhost
+
+  redis:
+    addr: localhost:6379
+    db: 1 # 使用DB 1进行测试，避免影响生产数据
+
+  websocket:
+    ping_interval: 30s
+    pong_timeout: 60s
+    max_message_size: 512
+
+  timeouts:
+    server_startup: 10s
+    http_request: 10s
+    websocket_connect: 5s
+
+  limits:
+    max_rooms_per_test: 10
+    max_users_per_room: 10
+    message_expiry: 20s
