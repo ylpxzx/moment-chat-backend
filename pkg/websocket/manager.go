@@ -113,6 +113,17 @@ func (r *Room) AddClient(client *Client) {
 			"username":  client.Username, // 加入用户的昵称
 			"avatar":    client.Avatar,   // 加入用户的头像
 			"userCount": len(r.Clients),  // 当前房间在线用户数量（包括新加入者）
+			"userList": func() []map[string]string {
+				userList := []map[string]string{}
+				for _, c := range r.Clients {
+					userList = append(userList, map[string]string{
+						"userId":   c.UserId,
+						"username": c.Username,
+						"avatar":   c.Avatar,
+					})
+				}
+				return userList
+			}(),
 		},
 	}
 	log.Printf("Broadcasting join message for clientID=%s in roomID=%s", client.ID, r.ID)
