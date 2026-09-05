@@ -19,19 +19,19 @@ type Client struct {
 //
 // 参数:
 //   - addr: Redis 服务器地址,格式为 "host:port",例如 "localhost:6379"
+//   - password: Redis 连接密码；无密码时传空字符串
 //   - db: 要选择的 Redis 数据库索引号,范围通常为 0-15
 //
 // 返回值:
 //   - *Client: 初始化后的 Redis 客户端指针,可用于执行 Redis 操作
 //
 // 注意:
-//   - 当前配置使用空密码,如需密码认证请修改 Password 字段
 //   - 连接测试超时时间设置为 5 秒
 //   - 若连接失败会触发 panic,调用方应做好错误处理准备
-func NewClient(addr string, db int) (*Client, error) {
+func NewClient(addr, password string, db int) (*Client, error) {
 	client := redis.NewClient(&redis.Options{
 		Addr:     addr,
-		Password: "", // 无密码
+		Password: password,
 		DB:       db,
 	})
 

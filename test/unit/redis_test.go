@@ -17,7 +17,7 @@ func TestRedisClient(t *testing.T) {
 	}
 
 	// 使用测试Redis实例
-	client, err := redis.NewClient("localhost:6379", 1)
+	client, err := redis.NewClient("localhost:6379", "794859685", 1)
 	require.NoError(t, err, "Failed to create Redis client")
 	defer func() {
 		client.FlushDB(context.Background())
@@ -51,7 +51,7 @@ func TestRedisPing(t *testing.T) {
 		t.Skip("Skipping Redis test in short mode")
 	}
 
-	client, err := redis.NewClient("localhost:6379", 1)
+	client, err := redis.NewClient("localhost:6379", "794859685", 1)
 	require.NoError(t, err, "Failed to create Redis client")
 	defer client.Close()
 

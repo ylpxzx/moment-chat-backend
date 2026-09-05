@@ -8,10 +8,11 @@ import (
 )
 
 type Config struct {
-	ServerPort int
-	RedisAddr  string
-	RedisDB    int
-	Debug      bool
+	ServerPort    int
+	RedisAddr     string
+	RedisPassword string
+	RedisDB       int
+	Debug         bool
 }
 
 func Load() *Config {
@@ -23,10 +24,11 @@ func Load() *Config {
 	redisDB, _ := strconv.Atoi(getEnv("REDIS_DB", "0"))
 
 	return &Config{
-		ServerPort: port,
-		RedisAddr:  getEnv("REDIS_ADDR", "localhost:6379"),
-		RedisDB:    redisDB,
-		Debug:      getEnv("DEBUG", "false") == "true",
+		ServerPort:    port,
+		RedisAddr:     getEnv("REDIS_ADDR", "localhost:6379"),
+		RedisPassword: getEnv("REDIS_PASSWORD", ""),
+		RedisDB:       redisDB,
+		Debug:         getEnv("DEBUG", "false") == "true",
 	}
 }
 

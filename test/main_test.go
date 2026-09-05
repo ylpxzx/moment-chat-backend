@@ -40,14 +40,15 @@ func setupTestEnvironment() {
 
 	// 加载测试配置
 	testConfig = &config.Config{
-		ServerPort: 8081, // 使用不同端口避免冲突
-		RedisAddr:  "localhost:6379",
-		RedisDB:    1, // 使用不同的DB
-		Debug:      true,
+		ServerPort:    8081, // 使用不同端口避免冲突
+		RedisAddr:     "localhost:6379",
+		RedisPassword: "794859685",
+		RedisDB:       1, // 使用不同的DB
+		Debug:         true,
 	}
 
 	// 初始化Redis测试客户端
-	testRedis, err := redis.NewClient(testConfig.RedisAddr, testConfig.RedisDB)
+	testRedis, err := redis.NewClient(testConfig.RedisAddr, testConfig.RedisPassword, testConfig.RedisDB)
 	if err != nil {
 		log.Fatalf("Failed to connect to Redis: %v", err)
 	}

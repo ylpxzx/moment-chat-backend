@@ -31,7 +31,7 @@ func NewServer(cfg *config.Config) *Server {
 	}
 
 	// 初始化Redis
-	redisClient, err := redis.NewClient(cfg.RedisAddr, cfg.RedisDB)
+	redisClient, err := redis.NewClient(cfg.RedisAddr, cfg.RedisPassword, cfg.RedisDB)
 	if err != nil {
 		log.Fatalf("Failed to connect to Redis: %v", err)
 	}
